@@ -9,7 +9,8 @@ const config = {
 			fallback: 'index.html'
 		}),
 		paths: {
-			base: '/BirthdayPaps2026'
+			base: '/BirthdayPaps2026',
+			assets: '/BirthdayPaps2026'
 		}
 	}
 };
