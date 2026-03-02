@@ -31,7 +31,7 @@
 	let startX = 0;
 	let startY = 0;
 
-	// ✅ widen incorrect SvelteKit typing (non-deprecated solution)
+	// ✅ correct resolve typing workaround
 	const r = resolve as (p: `/${string}`) => string;
 
 	function nextCard() {
@@ -72,7 +72,7 @@
 
 <button
 	type="button"
-	class="flex h-screen w-screen items-center justify-center overflow-hidden bg-black focus:outline-none"
+	class="fixed inset-0 flex items-center justify-center overflow-hidden bg-black focus:outline-none"
 	ontouchstart={onTouchStart}
 	ontouchend={onTouchEnd}
 	aria-label="Swipe left or right to flip. Swipe up or down to change photo."
@@ -111,7 +111,7 @@
 	{/key}
 
 	<!-- dots -->
-	<div class="absolute bottom-6 flex gap-2">
+	<div class="pointer-events-none absolute bottom-6 flex gap-2">
 		{#each cards as _, i}
 			<div
 				class={`h-2 w-2 rounded-full ${i === currentIndex ? 'bg-purple-400' : 'bg-white/30'}`}
