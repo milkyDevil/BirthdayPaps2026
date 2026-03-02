@@ -31,7 +31,6 @@
 	let startX = 0;
 	let startY = 0;
 
-	// ✅ correct resolve typing workaround
 	const r = resolve as (p: `/${string}`) => string;
 
 	function nextCard() {
@@ -53,11 +52,14 @@
 	}
 
 	function onTouchStart(e: TouchEvent) {
+		e.preventDefault();
 		startX = e.changedTouches[0].clientX;
 		startY = e.changedTouches[0].clientY;
 	}
 
 	function onTouchEnd(e: TouchEvent) {
+		e.preventDefault();
+
 		const dx = e.changedTouches[0].clientX - startX;
 		const dy = e.changedTouches[0].clientY - startY;
 
@@ -72,7 +74,7 @@
 
 <button
 	type="button"
-	class="fixed inset-0 flex items-center justify-center overflow-hidden bg-black focus:outline-none"
+	class="fixed inset-0 flex touch-none items-center justify-center overflow-hidden bg-black select-none focus:outline-none"
 	ontouchstart={onTouchStart}
 	ontouchend={onTouchEnd}
 	aria-label="Swipe left or right to flip. Swipe up or down to change photo."
@@ -85,7 +87,7 @@
 					<img
 						src={r(cards[currentIndex].image)}
 						alt=""
-						class="max-h-screen max-w-full object-contain"
+						class="max-h-[100dvh] max-w-[100dvw] object-contain"
 						draggable="false"
 					/>
 				</div>
