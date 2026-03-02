@@ -1,6 +1,8 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
+
 	type Card = {
-		image: string;
+		image: `/${string}`;
 		caption: string;
 		message: string;
 	};
@@ -28,6 +30,9 @@
 
 	let startX = 0;
 	let startY = 0;
+
+	// ✅ widen incorrect SvelteKit typing (non-deprecated solution)
+	const r = resolve as (p: `/${string}`) => string;
 
 	function nextCard() {
 		if (currentIndex < cards.length - 1) {
@@ -78,7 +83,7 @@
 				<!-- FRONT -->
 				<div class="card-face">
 					<img
-						src={cards[currentIndex].image}
+						src={r(cards[currentIndex].image)}
 						alt=""
 						class="max-h-screen max-w-full object-contain"
 						draggable="false"
@@ -87,9 +92,7 @@
 
 				<!-- BACK -->
 				<div
-					class="card-face rotate-y-180
-                 bg-linear-to-b from-purple-950 via-purple-900 to-black
-                 text-purple-200"
+					class="card-face rotate-y-180 bg-linear-to-b from-purple-950 via-purple-900 to-black text-purple-200"
 				>
 					<div class="space-y-6 p-8 text-center">
 						<div
@@ -118,8 +121,6 @@
 </button>
 
 <style>
-	/* Only structural 3D flip styles (not visual theme) */
-
 	.card-container {
 		perspective: 1200px;
 		width: 100%;
