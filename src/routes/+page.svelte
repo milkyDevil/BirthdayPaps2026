@@ -25,8 +25,8 @@
 		}
 	]);
 
-	let currentIndex = $state<number>(0);
-	let flipped = $state<boolean>(false);
+	let currentIndex = $state(0);
+	let flipped = $state(false);
 
 	let startX = 0;
 	let startY = 0;
@@ -52,14 +52,11 @@
 	}
 
 	function onTouchStart(e: TouchEvent) {
-		e.preventDefault();
 		startX = e.changedTouches[0].clientX;
 		startY = e.changedTouches[0].clientY;
 	}
 
 	function onTouchEnd(e: TouchEvent) {
-		e.preventDefault();
-
 		const dx = e.changedTouches[0].clientX - startX;
 		const dy = e.changedTouches[0].clientY - startY;
 
@@ -82,25 +79,23 @@
 	{#key currentIndex}
 		<div class="card-container">
 			<div class={`card ${flipped ? 'flipped' : ''}`}>
-				<!-- FRONT (image only) -->
+				<!-- FRONT -->
 				<div class="card-face">
 					<div class="img-viewport">
 						<img src={r(cards[currentIndex].image)} alt="" class="img-fit" draggable="false" />
 					</div>
 				</div>
 
-				<!-- BACK (caption + message) -->
+				<!-- BACK -->
 				<div
 					class="card-face rotate-y-180 bg-linear-to-b from-purple-950 via-purple-900 to-black text-purple-200"
 				>
-					<div class="space-y-6 p-8 text-center">
-						<div
-							class="text-2xl font-semibold text-purple-300 drop-shadow-[0_0_12px_rgba(168,85,247,0.7)]"
-						>
+					<div class="max-w-md space-y-6 p-8 text-center">
+						<div class="text-2xl font-semibold text-purple-300">
 							{cards[currentIndex].caption}
 						</div>
 
-						<div class="text-lg leading-relaxed text-purple-200">
+						<div class="text-lg leading-relaxed">
 							{cards[currentIndex].message}
 						</div>
 					</div>
@@ -133,8 +128,8 @@
 		position: relative;
 		width: 100%;
 		height: 100%;
-		transition: transform 0.6s ease;
 		transform-style: preserve-3d;
+		transition: transform 0.6s ease;
 	}
 
 	.flipped {
@@ -144,29 +139,25 @@
 	.card-face {
 		position: absolute;
 		inset: 0;
-		backface-visibility: hidden;
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		backface-visibility: hidden;
 	}
 
 	.rotate-y-180 {
 		transform: rotateY(180deg);
 	}
 
-	/* IMAGE FITTING (mobile-safe) */
 	.img-viewport {
-		width: 100%;
-		height: 100%;
+		width: 100dvw;
+		height: 100dvh;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		overflow: hidden;
 	}
 
 	.img-fit {
-		width: auto;
-		height: auto;
 		max-width: 100%;
 		max-height: 100%;
 		object-fit: contain;
