@@ -74,7 +74,6 @@
 	class="fixed inset-0 flex touch-none items-center justify-center overflow-hidden bg-black select-none focus:outline-none"
 	ontouchstart={onTouchStart}
 	ontouchend={onTouchEnd}
-	aria-label="Swipe left or right to flip. Swipe up or down to change photo."
 >
 	{#key currentIndex}
 		<div class="card-container">
@@ -104,7 +103,6 @@
 		</div>
 	{/key}
 
-	<!-- dots -->
 	<div class="pointer-events-none absolute bottom-6 flex gap-2">
 		{#each cards as _, i}
 			<div
@@ -115,10 +113,11 @@
 </button>
 
 <style>
+	/* ✅ FIX 1 — force viewport height */
 	.card-container {
 		perspective: 1200px;
-		width: 100%;
-		height: 100%;
+		width: 100dvw;
+		height: 100dvh;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -149,9 +148,10 @@
 		transform: rotateY(180deg);
 	}
 
+	/* ✅ FIX 2 — viewport follows card size */
 	.img-viewport {
-		width: 100dvw;
-		height: 100dvh;
+		width: 100%;
+		height: 100%;
 		display: flex;
 		align-items: center;
 		justify-content: center;
