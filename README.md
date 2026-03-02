@@ -38,3 +38,14 @@ This project presents memories as full-screen cards:
 pnpm install
 pnpm dev
 ```
+
+### ✅ Now rebuild & publish
+
+```bash
+pnpm build
+npx gh-pages -d build
+```
+
+### Link to test
+
+https://milkydevil.github.io/BirthdayPaps2026/
