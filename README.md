@@ -42,8 +42,9 @@ pnpm dev
 ### ✅ Now rebuild & publish
 
 ```bash
+rm -rf build
 pnpm build
-npx gh-pages -d build
+npx gh-pages -d build --dotfiles
 ```
 
 ### Link to test
