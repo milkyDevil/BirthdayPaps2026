@@ -84,12 +84,9 @@
 			<div class={`card ${flipped ? 'flipped' : ''}`}>
 				<!-- FRONT -->
 				<div class="card-face">
-					<img
-						src={r(cards[currentIndex].image)}
-						alt=""
-						class="max-h-[100dvh] max-w-[100dvw] object-contain"
-						draggable="false"
-					/>
+					<div class="img-viewport">
+						<img src={r(cards[currentIndex].image)} alt="" class="img-fit" draggable="false" />
+					</div>
 				</div>
 
 				<!-- BACK -->
@@ -155,5 +152,20 @@
 
 	.rotate-y-180 {
 		transform: rotateY(180deg);
+	}
+
+	.img-viewport {
+		width: 100dvw;
+		height: 100dvh;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		overflow: hidden;
+	}
+
+	.img-fit {
+		max-width: 100%;
+		max-height: 100%;
+		object-fit: contain;
 	}
 </style>
