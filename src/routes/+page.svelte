@@ -82,14 +82,14 @@
 	{#key currentIndex}
 		<div class="card-container">
 			<div class={`card ${flipped ? 'flipped' : ''}`}>
-				<!-- FRONT -->
+				<!-- FRONT (image only) -->
 				<div class="card-face">
 					<div class="img-viewport">
 						<img src={r(cards[currentIndex].image)} alt="" class="img-fit" draggable="false" />
 					</div>
 				</div>
 
-				<!-- BACK -->
+				<!-- BACK (caption + message) -->
 				<div
 					class="card-face rotate-y-180 bg-linear-to-b from-purple-950 via-purple-900 to-black text-purple-200"
 				>
@@ -154,9 +154,10 @@
 		transform: rotateY(180deg);
 	}
 
+	/* IMAGE FITTING (mobile-safe) */
 	.img-viewport {
-		width: 100dvw;
-		height: 100dvh;
+		width: 100%;
+		height: 100%;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -164,6 +165,8 @@
 	}
 
 	.img-fit {
+		width: auto;
+		height: auto;
 		max-width: 100%;
 		max-height: 100%;
 		object-fit: contain;
