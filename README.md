@@ -44,7 +44,7 @@ pnpm dev
 ```bash
 rm -rf build
 pnpm build
-npx gh-pages -d build --dotfiles
+npx gh-pages -d build --dotfiles --no-history
 ```
 
 ### Link to test
