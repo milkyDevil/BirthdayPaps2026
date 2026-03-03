@@ -24,7 +24,7 @@
 			image: '/cards/paps_sisters.png',
 			caption: "The King of Hearts... and the permanent 'Baby Bro' of the family.",
 			message:
-				'Growing up as the only brother to five sisters means you were never short on love (or people to look after you!). You’ve always been their "Baby Bro"—the king of their hearts who was protected, pampered, and cheered on by his very own squad.'
+				'Growing up as the only brother to five sisters means you were never short on love (or people to look after you!). You’ve always been their "Baby Bro"—the king of their hearts who was protected, pampered, and cheered on by your very own squad.'
 		},
 		{
 			image: '/cards/paps_cook.png',
@@ -117,15 +117,19 @@
 	function nextCard() {
 		if (currentIndex < cards.length - 1) {
 			currentIndex++;
-			flipped = false;
+		} else {
+			currentIndex = 0;
 		}
+		flipped = false;
 	}
 
 	function prevCard() {
 		if (currentIndex > 0) {
 			currentIndex--;
-			flipped = false;
+		} else {
+			currentIndex = cards.length - 1;
 		}
+		flipped = false;
 	}
 
 	function toggleFlip() {
