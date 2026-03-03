@@ -5,8 +5,7 @@ const config = {
 	kit: {
 		adapter: adapter({
 			pages: 'build',
-			assets: 'build',
-			fallback: 'index.html'
+			assets: 'build'
 		}),
 		paths: {
 			base: '/BirthdayPaps2026'
